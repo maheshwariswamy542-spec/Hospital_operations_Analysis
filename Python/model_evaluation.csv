@@ -1,0 +1,3 @@
+model,accuracy,long_stay_precision,long_stay_recall,long_stay_f1,roc_auc
+Majority-Class Baseline,0.768,0.0,0.0,0.0,0.5
+Balanced Logistic Regression,0.506,0.24,0.518,0.328,0.513
