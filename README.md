@@ -600,12 +600,20 @@ Excel, SQL, and Python outputs remain the source of truth. AI-generated content 
 
 ```text
 Hospital_operations_Analysis/
-├── Hospital operations Analytics/
-│   └── Excel, SQL, cleaned data, and supporting analysis files
+├── Hospital_operations_Analytics/
+│   ├── Data/
+│   │   ├── Raw data/
+│   │   │   └── healthcare_dataset_raw.csv
+│   │   └── Cleaned data/
+│   │       └── healthcare_cleaned_data.xlsx
+│   └── SQL/
+│       ├── hospital_operations_analysis.sql
+│       └── sql_kpi_summary.csv
 ├── Python/
 │   ├── Hospital_Operations_Python.ipynb
 │   ├── high_attention_records.csv
 │   ├── model_evaluation.csv
+│   ├── requirements.txt
 │   └── README.md
 ├── images/
 │   ├── dashboard-overview.png
