@@ -11,35 +11,35 @@
 
 ## Executive Summary
 
-This portfolio project analyzes **54,966 cleaned hospital admission records** to evaluate operational activity, patient characteristics, billing performance, data quality, admission trends, and potential long-stay patterns.
+This portfolio project analyzes **54,966 cleaned hospital admission records** to evaluate operational activity, patient characteristics, billing performance, data quality, admission trends, high-cost cases, and potential long-stay patterns.
 
-I created an end-to-end analytical workflow using **Microsoft Excel, SQL Server, Python, Pandas, Matplotlib, and scikit-learn**. The workflow preserves the original data, removes exact duplicates, validates important fields, flags unreliable billing records, produces decision-ready visualizations, creates a rule-based operational review process, and evaluates a machine-learning model.
+I created an end-to-end analytical workflow using **Microsoft Excel, SQL Server, Python, Pandas, Matplotlib, and scikit-learn**. The workflow preserves the original data, removes exact duplicates, validates critical fields, flags unreliable billing records, produces decision-ready visualizations, creates a rule-based operational review process, and evaluates a machine-learning experiment.
 
-The original dataset contained **55,500 records**. During data preparation, **534 exact duplicate rows** were removed, leaving **54,966 cleaned records**. An additional **106 zero or negative billing records** were flagged for review and excluded from valid financial calculations. The final dataset contained **54,860 valid billing records**, producing a **99.81% billing-quality pass rate**.
+The original dataset contained **55,500 records**. During data preparation, **534 exact duplicates** were removed, leaving **54,966 cleaned records**. Another **106 zero or negative billing records** were flagged for review and excluded from valid financial calculations. This resulted in **54,860 valid billing records** and a **99.81% billing-quality pass rate**.
 
-Python analysis confirmed the main Excel and SQL results. A rule-based operational screening process identified **1,908 high-attention records**, representing **3.47%** of all admissions. A logistic-regression experiment was also developed to predict long hospital stays. However, the model produced a **ROC-AUC of 0.513**, showing that the available synthetic features did not contain enough predictive information for deployment.
+Python independently confirmed the major Excel and SQL findings. A rule-based screening process identified **1,908 high-attention records**, representing **3.47%** of admissions. A logistic-regression experiment was also developed to predict long hospital stays. The model produced a **ROC-AUC of 0.513**, demonstrating that the available synthetic features were not sufficient for reliable prediction.
 
 ## Business Objective
 
 The project was designed to answer the following questions:
 
-* What is the overall volume of hospital admissions?
+* What is the total volume of hospital admissions?
 * Which medical conditions occur most frequently?
 * Which admission types account for the most activity?
 * Which conditions are associated with longer hospital stays?
 * How are admissions distributed across insurance providers?
 * Which conditions and insurers have higher average valid billing?
-* Which records contain billing or other data-quality problems?
-* How have hospital admissions changed over time?
+* Which records contain billing or data-quality problems?
+* How have admissions changed over time?
 * Which months have the highest and lowest admission activity?
 * Which patient age groups account for the most admissions?
 * Which records may require additional operational review?
-* Can patient information available around admission predict a long hospital stay?
-* What data limitations prevent reliable hospital, doctor, and predictive analysis?
+* Can information available around admission predict a long hospital stay?
+* What data limitations affect hospital, doctor, and predictive analysis?
 
 ## Dataset
 
-The synthetic healthcare dataset contains patient-level hospital admission records, including:
+The synthetic dataset contains hospital admission records with:
 
 * Patient age and gender
 * Blood type
@@ -55,7 +55,7 @@ The synthetic healthcare dataset contains patient-level hospital admission recor
 * Length of stay
 * Data-quality validation fields
 
-> **Privacy note:** This is a synthetic dataset. It does not contain real patient information or protected health information. The de-identified operational-review output excludes patient names, doctors, and hospital names.
+> **Privacy note:** This dataset is synthetic and does not contain real patient information or protected health information. The exported operational-review file excludes patient names, doctors, and hospital names.
 
 ## Analytical Workflow
 
@@ -67,44 +67,43 @@ flowchart TD
     D --> E["Operational Screening"]
     E --> F["Machine-Learning Experiment"]
     F --> G["Model Evaluation and Governance"]
-    G --> H["Executive Findings and Recommendations"]
+    G --> H["Executive Recommendations"]
 ```
 
 ## Tools and Skills Demonstrated
 
-| Tool            | Work Completed                                                                                     |
-| --------------- | -------------------------------------------------------------------------------------------------- |
-| Microsoft Excel | Data cleaning, validation rules, audit checks, pivot tables, KPI cards, dashboard and slicers      |
-| SQL Server      | Data import, validation, filtering, aggregation, reusable analytical view and KPI reconciliation   |
-| Python          | Data loading, validation, exploratory analysis, feature engineering and export creation            |
-| Pandas          | Grouping, filtering, aggregation, reshaping, quality checks and summary tables                     |
-| Matplotlib      | Bar charts, horizontal bar charts, trend charts and model-evaluation visuals                       |
-| scikit-learn    | Train/test split, preprocessing pipeline, baseline model, logistic regression and evaluation       |
-| GitHub          | Version-controlled project documentation and portfolio presentation                                |
-| Generative AI   | Code assistance, debugging, documentation drafting and executive interpretation under human review |
+| Tool            | Work Completed                                                                                 |
+| --------------- | ---------------------------------------------------------------------------------------------- |
+| Microsoft Excel | Cleaning, validation rules, audit checks, pivot tables, KPI cards, dashboard, and slicers      |
+| SQL Server      | Import validation, filtering, aggregation, reusable analytical view, and KPI reconciliation    |
+| Python          | Data validation, exploratory analysis, feature engineering, operational screening, and exports |
+| Pandas          | Filtering, grouping, aggregation, reshaping, quality checks, and summary tables                |
+| Matplotlib      | Business charts, monthly trends, operational screening chart, and confusion matrix             |
+| scikit-learn    | Train/test split, preprocessing pipeline, baseline model, logistic regression, and evaluation  |
+| GitHub          | Version-controlled project documentation and portfolio presentation                            |
+| Generative AI   | Coding assistance, debugging, documentation, and executive interpretation under human review   |
 
 ## Excel Analysis
 
-Excel was used to create a transparent data-cleaning, validation, and reporting layer.
+Excel was used to create a transparent cleaning, validation, and reporting layer.
 
 ### Data Preparation
 
 * Preserved the original dataset in a separate worksheet
 * Removed **534 exact duplicate rows**
-* Standardized field names for SQL compatibility
+* Standardized field names
 * Checked required fields for missing values
-* Validated patient ages
-* Validated room numbers
+* Validated patient ages and room numbers
 * Checked admission and discharge dates
 * Calculated patient length of stay
 * Validated admission-type categories
 * Flagged zero and negative billing amounts
-* Created an overall quality status for every record
-* Preserved invalid records for audit purposes instead of overwriting them
+* Created an overall quality status
+* Preserved unreliable records for auditing instead of overwriting them
 
 ### Data-Quality Fields
 
-The cleaned workbook includes the following validation fields:
+The cleaned workbook includes:
 
 * `Age_Check`
 * `Billing_Check`
@@ -118,16 +117,11 @@ The cleaned workbook includes the following validation fields:
 ### Excel Reporting
 
 * Created a data-quality audit report
-* Built pivot tables for medical conditions
-* Analyzed admission types
-* Analyzed insurance-provider distribution
-* Compared average length of stay
-* Reviewed billing by insurance provider
-* Analyzed test-result distribution
+* Built pivot tables for conditions, admission types, insurers, length of stay, and test results
 * Created patient age groups
-* Built KPI cards
+* Developed KPI cards
 * Added interactive slicers
-* Developed an interactive hospital-operations dashboard
+* Built an interactive hospital-operations dashboard
 * Reconciled dashboard metrics with the cleaned dataset
 
 ## SQL Server Analysis
@@ -136,29 +130,21 @@ The cleaned data was imported into the `Healthcare_Analytics` database as `dbo.H
 
 ### SQL Techniques Demonstrated
 
-* `SELECT`
-* `WHERE`
-* `CASE`
-* `GROUP BY`
-* `ORDER BY`
-* `COUNT`
-* `SUM`
-* `AVG`
-* `MIN`
-* `MAX`
+* `SELECT`, `WHERE`, `CASE`, `GROUP BY`, and `ORDER BY`
+* `COUNT`, `SUM`, `AVG`, `MIN`, and `MAX`
 * Conditional aggregation
 * Percentage calculations
 * Window functions
-* Date analysis using `YEAR()` and `MONTH()`
+* Date analysis with `YEAR()` and `MONTH()`
 * Data-type validation with `TRY_CONVERT()`
 * Top-N analysis
 * Reusable analytical views
 
 ### Valid Billing View
 
-The view `dbo.Valid_Healthcare_Data` excludes billing amounts less than or equal to zero from financial calculations while retaining the original records in the source table for audit and review.
+The view `dbo.Valid_Healthcare_Data` excludes billing amounts less than or equal to zero from financial calculations while preserving the original records for audit purposes.
 
-This approach prevents invalid billing records from distorting:
+This prevents unreliable billing records from distorting:
 
 * Total billing
 * Average billing
@@ -168,23 +154,23 @@ This approach prevents invalid billing records from distorting:
 
 ## Python Analysis
 
-Python was used to independently validate Excel and SQL results, conduct exploratory analysis, create visualizations, prepare operational features, and evaluate a machine-learning experiment.
+Python was used to validate Excel and SQL results, perform exploratory analysis, create visualizations, engineer features, build an operational screening process, and evaluate a machine-learning experiment.
 
 ### Python Data Validation
 
 The Python analysis confirmed:
 
-* **54,966 rows**
+* **54,966 cleaned rows**
 * **23 original columns**
 * No missing values
 * No exact duplicates in the cleaned dataset
-* Correct date formats for admission and discharge dates
-* Numeric formats for age, billing amount, room number, and length of stay
+* Correct admission and discharge date types
+* Correct numerical types for age, billing, room number, and length of stay
 * **106 negative billing records**
 * **54,860 valid billing records**
 * **99.81% valid billing rate**
 
-Column names were standardized into lowercase `snake_case` format to make the Python code consistent and readable.
+Column names were standardized into lowercase `snake_case` format.
 
 Examples:
 
@@ -214,15 +200,14 @@ Python was used to analyze:
 
 ### Python Visualizations
 
-The notebook includes:
+The notebook contains:
 
 * Admissions by medical condition
 * Average length of stay by condition
 * Average valid billing by condition
 * Admissions by admission type
 * Monthly hospital admissions trend
-* Corrected
-* Monthly admissions with incomplete months removed
+* Corrected monthly trend excluding incomplete months
 * Admissions by insurance provider
 * Patient distribution by age group
 * Operational attention-level distribution
@@ -230,23 +215,23 @@ The notebook includes:
 
 ## Key Performance Indicators
 
-| KPI                                            |            Result |
-| ---------------------------------------------- | ----------------: |
-| Original records                               |            55,500 |
-| Exact duplicates removed                       |               534 |
-| Cleaned records                                |            54,966 |
-| Valid billing records                          |            54,860 |
-| Invalid billing records                        |               106 |
-| Billing-quality pass rate                      |            99.81% |
-| Average patient age                            |       51.54 years |
-| Patient age range                              |       13–89 years |
-| Average length of stay                         |        15.50 days |
-| Average valid billing                          |        $25,594.63 |
-| Total valid billing                            | $1,404,121,601.31 |
-| Analysis period                                | May 2019–May 2024 |
-| Average monthly admissions for complete months | Approximately 917 |
-| High-attention records                         |             1,908 |
-| High-attention rate                            |             3.47% |
+| KPI                               |            Result |
+| --------------------------------- | ----------------: |
+| Original records                  |            55,500 |
+| Exact duplicates removed          |               534 |
+| Cleaned records                   |            54,966 |
+| Valid billing records             |            54,860 |
+| Invalid billing records           |               106 |
+| Billing-quality pass rate         |            99.81% |
+| Average patient age               |       51.54 years |
+| Patient age range                 |       13–89 years |
+| Average length of stay            |        15.50 days |
+| Average valid billing             |        $25,594.63 |
+| Total valid billing               | $1,404,121,601.31 |
+| Analysis period                   | May 2019–May 2024 |
+| Complete-month average admissions | Approximately 917 |
+| High-attention records            |             1,908 |
+| High-attention rate               |             3.47% |
 
 ## Business Findings
 
@@ -263,11 +248,9 @@ Admissions were distributed relatively evenly across the six medical conditions.
 | Cancer            |      9,140 |
 | Asthma            |      9,095 |
 
-* Arthritis had the highest number of admissions.
-* Asthma had the lowest number of admissions.
-* The difference between the highest and lowest conditions was only 123 admissions.
+Arthritis had the highest number of admissions, while Asthma had the lowest. The difference between them was only **123 admissions**.
 
-### 2. Length of Stay
+### 2. Average Length of Stay
 
 | Medical Condition | Average Stay |
 | ----------------- | -----------: |
@@ -278,7 +261,7 @@ Admissions were distributed relatively evenly across the six medical conditions.
 | Hypertension      |   15.44 days |
 | Diabetes          |   15.43 days |
 
-Asthma had the longest average stay. However, the difference between the highest and lowest condition averages was only **0.25 days**, so the variation was operationally small.
+Asthma had the longest average stay. However, the difference between the highest and lowest averages was only **0.25 days**, indicating limited variation.
 
 ### 3. Admission Types
 
@@ -290,7 +273,7 @@ Asthma had the longest average stay. However, the difference between the highest
 
 All three admission types represented approximately one-third of total admissions.
 
-### 4. Valid Billing by Medical Condition
+### 4. Average Valid Billing by Medical Condition
 
 | Medical Condition | Average Valid Billing |
 | ----------------- | --------------------: |
@@ -301,9 +284,7 @@ All three admission types represented approximately one-third of total admission
 | Arthritis         |            $25,542.90 |
 | Cancer            |            $25,205.92 |
 
-* Obesity had the highest average valid billing.
-* Cancer had the lowest average valid billing.
-* The difference was **$653.30**, indicating relatively limited variation.
+Obesity had the highest average valid billing, while Cancer had the lowest. The difference was **$653.30**.
 
 ### 5. Insurance-Provider Distribution
 
@@ -315,7 +296,7 @@ All three admission types represented approximately one-third of total admission
 | Blue Cross         |     10,952 |     19.93% |
 | Aetna              |     10,822 |     19.69% |
 
-Insurance coverage was distributed almost evenly across the five providers.
+Admissions were distributed almost evenly across the five insurance providers.
 
 ### 6. Average Valid Billing by Insurance Provider
 
@@ -327,7 +308,7 @@ Insurance coverage was distributed almost evenly across the five providers.
 | Cigna              |            $25,582.23 |
 | UnitedHealthcare   |            $25,458.89 |
 
-The difference between the highest and lowest insurer averages was only **$219.20**, indicating relatively consistent billing across insurers.
+The difference between the highest and lowest insurer averages was only **$219.20**.
 
 ### 7. Test Results
 
@@ -337,7 +318,7 @@ The difference between the highest and lowest insurer averages was only **$219.2
 | Normal       |  18,331 |     33.35% |
 | Inconclusive |  18,198 |     33.11% |
 
-Test outcomes were distributed almost equally across the three categories.
+Test-result categories were distributed almost equally.
 
 ### 8. Gender Distribution
 
@@ -358,20 +339,15 @@ The gender distribution was almost exactly balanced.
 | 50–64     |   12,288 |     22.36% |
 | 65+       |   16,923 |     30.79% |
 
-Patients aged 65 and older represented the largest group.
+Patients aged 65 and older were the largest group.
 
 ### 10. Monthly Admission Trends
 
-The original monthly trend covered **61 calendar months**, from May 2019 through May 2024.
+The admission dates range from **May 8, 2019 through May 7, 2024**, covering portions of 61 calendar months.
 
-May 2019 and May 2024 were incomplete months:
+May 2019 and May 2024 were incomplete months. They were excluded from the corrected monthly comparison to prevent misleading decreases caused by partial data.
 
-* First admission date: May 6, 2019
-* Last admission date: May 31, 2024
-
-These incomplete periods were excluded from the corrected monthly trend to prevent misleading comparisons.
-
-For complete months:
+For complete months from June 2019 through April 2024:
 
 * Average monthly admissions: approximately **917**
 * Highest monthly total: **August 2020 — 1,003 admissions**
@@ -379,13 +355,13 @@ For complete months:
 * Highest adjusted daily rate: **August 2020 — 32.35 admissions per day**
 * Lowest adjusted daily rate: **February 2022 — 27.57 admissions per day**
 
-Adjusting for days in each month confirmed that February 2022 remained the lowest-activity month.
+Adjusting for the number of days in each month confirmed that February 2022 remained the lowest-activity month.
 
 ### 11. Hospital-Name Fragmentation
 
-The dataset contained **39,876 unique hospital names**. The ten most frequently recorded hospital names represented only **0.65%** of total admissions.
+The dataset contained **39,876 unique hospital names**. The ten most frequently recorded hospital names represented only **0.65%** of admissions.
 
-Names such as `LLC Smith`, `Smith LLC`, `Ltd Smith`, and `Smith Ltd` demonstrate possible entity-standardization problems.
+Names such as `LLC Smith`, `Smith LLC`, `Ltd Smith`, and `Smith Ltd` indicate possible entity-standardization problems.
 
 Hospital workload rankings should not be treated as reliable without:
 
@@ -396,7 +372,7 @@ Hospital workload rankings should not be treated as reliable without:
 
 ### 12. Correlation Analysis
 
-Correlations between age, billing amount, and length of stay were all close to zero.
+The numerical relationships were all close to zero.
 
 | Variables                         | Correlation |
 | --------------------------------- | ----------: |
@@ -404,7 +380,7 @@ Correlations between age, billing amount, and length of stay were all close to z
 | Age and length of stay            |       0.008 |
 | Billing amount and length of stay |      -0.005 |
 
-The dataset does not show meaningful linear relationships among these variables. No causal conclusions should be made from these results.
+The dataset does not show meaningful linear relationships among these variables. These results do not support causal conclusions.
 
 ## High-Cost Record Analysis
 
@@ -436,7 +412,7 @@ One point was assigned for each condition:
 * Emergency admission
 * Abnormal test result
 * Length of stay greater than 23 days
-* Billing amount at or above $47,641.28
+* Valid billing amount at or above $47,641.28
 
 ### Attention Categories
 
@@ -478,7 +454,7 @@ The model used:
 * Admission type
 * Insurance provider
 
-Billing amount and discharge date were excluded because they would not be reliably known at admission and could create data leakage.
+Billing amount and discharge date were excluded because they would not be reliably available at admission and could create data leakage.
 
 ### Train/Test Split
 
@@ -510,18 +486,18 @@ Billing amount and discharge date were excluded because they would not be reliab
 
 The logistic-regression model:
 
-* Correctly identified 1,324 long-stay cases
-* Missed 1,232 long-stay cases
-* Incorrectly flagged 4,201 not-long-stay cases
-* Produced a ROC-AUC of only 0.513
+* Correctly identified **1,324 long-stay cases**
+* Missed **1,232 long-stay cases**
+* Incorrectly flagged **4,201 not-long-stay cases**
+* Produced a **ROC-AUC of 0.513**
 
 ### Model Decision
 
 The model should **not be deployed**.
 
-The available synthetic features contain very little predictive signal. The high baseline accuracy was caused by class imbalance and did not indicate real predictive performance because the baseline failed to identify any long-stay cases.
+The available synthetic features contain very little predictive signal. The baseline’s higher accuracy was caused by class imbalance and did not represent useful predictive performance because it identified no long-stay cases.
 
-A reliable model would require additional features such as:
+A reliable future model would require variables such as:
 
 * Diagnosis severity
 * Comorbidities
@@ -534,7 +510,7 @@ A reliable model would require additional features such as:
 * Social determinants of health
 * Stable patient and admission identifiers
 
-The model results were retained as an example of responsible model evaluation and governance. A weak model should be documented and rejected instead of being presented as successful.
+Retaining and documenting the unsuccessful experiment demonstrates responsible model evaluation. A weak model should be rejected rather than presented as successful.
 
 ## AI-Assisted Workflow and Governance
 
@@ -554,11 +530,11 @@ Generative AI was used as a coding and documentation assistant.
 
 ### Human Responsibilities
 
-* Validating all formulas and calculations
+* Validating formulas and calculations
 * Confirming table and column names
 * Running and testing every code block
 * Comparing Python results with SQL and Excel
-* Reviewing data-quality logic
+* Reviewing data-quality rules
 * Checking for data leakage
 * Evaluating model performance
 * Rejecting the weak model
@@ -571,29 +547,29 @@ Excel, SQL, and Python outputs remain the source of truth. AI-generated content 
 
 ### Data Quality
 
-* Route zero and negative billing records to a billing-review queue before financial reporting.
+* Route zero and negative billing records to a billing-review queue.
 * Calculate financial KPIs using validated billing records.
-* Preserve invalid records for audit purposes rather than deleting or overwriting them.
+* Preserve invalid records for auditing rather than overwriting them.
 * Automate checks for missing values, invalid dates, implausible ages, invalid room numbers, and category inconsistencies.
-* Add a unique `Admission_ID` during data ingestion.
-* Add stable `Patient_ID`, `Hospital_ID`, and `Doctor_ID` fields.
+* Add unique `Admission_ID` and `Patient_ID` fields.
+* Add stable `Hospital_ID` and `Doctor_ID` fields.
 * Maintain hospital and doctor master-data tables.
 * Apply standardized naming and entity-resolution rules.
 
 ### Hospital Operations
 
-* Review the factors contributing to lower admission activity in February 2022.
-* Use daily admission rates when comparing months with different numbers of days.
+* Investigate factors contributing to lower admission activity in February 2022.
+* Use daily admission rates when comparing months of different lengths.
 * Monitor the 65+ population because it represents the largest patient group.
 * Review high-attention records through an operational workflow.
-* Investigate long-stay cases using additional clinical and discharge-planning data.
+* Investigate long stays using additional clinical and discharge-planning information.
 
 ### Predictive Analytics
 
 * Do not deploy the current long-stay model.
 * Collect stronger clinical and operational predictors.
 * Establish a clinically meaningful target definition.
-* Compare future models against simple baselines.
+* Compare future models with simple baseline models.
 * Evaluate precision, recall, F1-score, ROC-AUC, and operational impact.
 * Require stakeholder review and validation before deployment.
 
@@ -611,18 +587,8 @@ Excel, SQL, and Python outputs remain the source of truth. AI-generated content 
 
 ```text
 Hospital_operations_Analysis/
-├── Data/
-│   ├── Raw_Data/
-│   └── Cleaned_Data/
-│       └── healthcare_cleaned_data.csv
-├── Excel/
-│   ├── healthcare_cleaned_final.xlsx
-│   └── Dashboard_Images/
-│       ├── dashboard_overview.png
-│       └── dashboard_details.png
-├── SQL/
-│   ├── hospital_operations_analysis.sql
-│   └── sql_kpi_summary.csv
+├── Hospital operations Analytics/
+│   └── Excel, SQL, cleaned data, and supporting analysis files
 ├── Python/
 │   ├── Hospital_Operations_Python.ipynb
 │   ├── high_attention_records.csv
@@ -647,7 +613,7 @@ Hospital_operations_Analysis/
 * SQL KPI summary
 * Python exploratory-analysis notebook
 * Python data-quality validation
-* Python charts and trend analysis
+* Python charts and monthly trend analysis
 * De-identified high-attention review file
 * Machine-learning experiment
 * Model-evaluation CSV
@@ -660,29 +626,29 @@ Hospital_operations_Analysis/
 
 1. Open SQL Server Management Studio.
 2. Create a database named `Healthcare_Analytics`.
-3. Import `healthcare_cleaned_data.csv` as `dbo.Healthcare_Data`.
-4. Open `SQL/hospital_operations_analysis.sql`.
+3. Import the cleaned healthcare CSV as `dbo.Healthcare_Data`.
+4. Open the SQL analysis script.
 5. Run the queries in sequence.
 6. Create the `dbo.Valid_Healthcare_Data` view.
-7. Compare the final results with `SQL/sql_kpi_summary.csv`.
+7. Compare the results with the saved SQL KPI summary.
 
 ## How to Reproduce the Python Analysis
 
 1. Install Python or Anaconda.
 2. Open Jupyter Notebook.
-3. Place the cleaned Excel workbook in the same working folder as the notebook.
+3. Place the cleaned Excel workbook in the notebook’s working folder.
 4. Open `Python/Hospital_Operations_Python.ipynb`.
-5. Confirm that the workbook filename in `pd.read_excel()` matches the local file.
+5. Confirm the Excel filename in `pd.read_excel()` matches the local workbook.
 6. Run the notebook cells in order.
 7. Compare the Python KPIs with the Excel and SQL results.
-8. Review the exported `high_attention_records.csv`.
-9. Review `model_evaluation.csv`.
+8. Review `Python/high_attention_records.csv`.
+9. Review `Python/model_evaluation.csv`.
 10. Confirm that the machine-learning conclusion remains supported by the evaluation results.
 
 ## Project Status
 
 * [x] Excel data cleaning and validation
-* [x] Excel audit report
+* [x] Excel data-quality audit
 * [x] Excel dashboard and KPI reporting
 * [x] SQL Server database and data import
 * [x] SQL data-quality analysis
@@ -694,6 +660,7 @@ Hospital_operations_Analysis/
 * [x] Monthly trend correction
 * [x] High-cost record analysis
 * [x] Operational attention screening
+* [x] Train/test split
 * [x] Machine-learning experiment
 * [x] Baseline comparison
 * [x] Model evaluation
@@ -704,20 +671,20 @@ Hospital_operations_Analysis/
 
 ## Limitations
 
-* The dataset is synthetic, so findings should not be interpreted as real clinical or financial benchmarks.
-* The dataset does not contain stable patient or admission identifiers.
+* The dataset is synthetic and should not be interpreted as a real clinical or financial benchmark.
+* Stable patient and admission identifiers are unavailable.
 * Reliable readmission analysis cannot be performed.
 * The dataset contains 39,876 distinct hospital names, limiting provider-level analysis.
-* Doctor and hospital names may contain inconsistent entity naming.
+* Hospital and doctor names may contain inconsistent entity naming.
 * Invalid billing records were flagged and excluded rather than overwritten.
 * The dataset lacks diagnosis severity, comorbidities, procedures, prior utilization, staffing, and discharge-barrier information.
-* Correlations among the main numerical variables were close to zero.
+* Correlations among the primary numerical variables were close to zero.
 * The long-stay model performed only slightly better than random guessing.
-* The rule-based attention score is not clinically validated.
-* No model or operational score in this project should be used for real patient-care decisions.
+* The operational attention score is not clinically validated.
+* No model or score in this project should be used for real patient-care decisions.
 
 ## Portfolio Summary
 
-This project demonstrates an end-to-end analytics workflow that combines data cleaning, quality controls, financial validation, SQL analysis, Python exploration, visualization, feature engineering, machine learning, governance, and executive communication.
+This project demonstrates an end-to-end analytics workflow combining data cleaning, quality controls, financial validation, SQL analysis, Python exploration, visualization, feature engineering, machine learning, governance, and executive communication.
 
-The project also demonstrates an important professional principle: analytical value does not come from forcing a positive result. The long-stay model was evaluated against a baseline, found to be unreliable, and rejected with clear recommendations for improving the underlying data.
+It also demonstrates an important professional principle: analytical value does not come from forcing a positive result. The long-stay model was evaluated against a baseline, found to be unreliable, and rejected with clear recommendations for improving the underlying data.
