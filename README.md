@@ -19,6 +19,19 @@ The original dataset contained **55,500 records**. During data preparation, **53
 
 Python independently confirmed the major Excel and SQL findings. A rule-based screening process identified **1,908 high-attention records**, representing **3.47%** of admissions. A logistic-regression experiment was also developed to predict long hospital stays. The model produced a **ROC-AUC of 0.513**, demonstrating that the available synthetic features were not sufficient for reliable prediction.
 
+## Key Results
+
+- Analyzed **54,966 cleaned hospital admission records** across Excel, SQL Server, and Python.
+- Identified **106 zero or negative billing records** for review and excluded them from valid financial calculations.
+- Achieved approximately **99.81% billing-quality pass rate**.
+- **Arthritis** recorded the highest admission volume with **9,218 admissions**.
+- **Asthma** had the longest average length of stay at approximately **15.68 days**.
+- **Obesity** had the highest average valid billing amount at approximately **$25,859**.
+- Rule-based operational screening identified **1,908 high-attention records (3.47% of admissions)**.
+- The exploratory long-stay model showed limited predictive performance, demonstrating that the available synthetic features were insufficient for reliable prediction.
+
+> **Business takeaway:** The project shows how data-quality controls, operational analytics, and responsible exploratory modeling can turn hospital admission data into decision-support insights.
+
 ## Business Objective
 
 The project was designed to answer the following questions:
