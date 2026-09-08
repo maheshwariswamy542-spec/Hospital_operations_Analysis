@@ -577,11 +577,11 @@ Excel, SQL, and Python outputs remain the source of truth. AI-generated content 
 
 ### Hospital Operations Overview
 
-![Hospital Operations Dashboard](images/dashboard_overview.png)
+![Hospital Operations Dashboard](images/dashboard-overview.png)
 
 ### Data Quality and Detailed Analysis
 
-![Hospital Operations Details](images/dashboard_details.png)
+![Hospital Operations Details](images/dashboard-details.png)
 
 ## Repository Structure
 
@@ -595,8 +595,8 @@ Hospital_operations_Analysis/
 │   ├── model_evaluation.csv
 │   └── README.md
 ├── images/
-│   ├── dashboard_overview.png
-│   └── dashboard_details.png
+│   ├── dashboard-overview.png
+│   └── dashboard-details.png
 └── README.md
 ```
 
